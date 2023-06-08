@@ -9,13 +9,7 @@ use Illuminate\Http\Request;
 class ProductController extends Controller
 {
     public function index(){
-        
-       
-    $products=Product::paginate(50);
-    foreach($products as $thisProduct)
-    {  dump ($thisProduct);
-        dump ($thisProduct->providers);
-    }
-  
-    }       
+    $products=Product::All();
+    return view('productlist',['products'=>$products]) ; 
+}
 }

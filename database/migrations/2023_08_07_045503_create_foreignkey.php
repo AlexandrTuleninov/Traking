@@ -57,6 +57,11 @@ class CreateForeignkey extends Migration
             $table->foreign('country_id','provider_country_country_fk')->on('countries')->references('id');
          
         });
+        Schema::table('album_photo', function (Blueprint $table) {
+            $table->foreign('album_id','album_products_album_fk')->on('products')->references('album_id');
+            $table->foreign('photo_id','album_photo_photo_fk')->on('photos')->references('id');
+         
+        });
 
     }
 

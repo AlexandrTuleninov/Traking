@@ -18,7 +18,8 @@ class CreateProductsTable extends Migration
             $table->string('name');
             $table->double('price');
             $table->string('measure');
-            $table->unsignedBigInteger('ablum_id');
+            $table->unsignedBigInteger('album_id');
+            $table->index('album_id');
             $table->text('description');
             $table->double('commodity_volume');
             $table->timestamps();

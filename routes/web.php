@@ -17,6 +17,7 @@ use App\Http\Controllers\ProductController;
 |
 */
 
+Route::match(['get','post'],'/productlist', [ProductController::class,'index']);
 
 Route::get('/', function () {
     return view('welcome');
@@ -56,3 +57,9 @@ Route::get('/confirm-password', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/basket/index', [BasketController::class, 'index']);
+Route::get('/basket/checkout', 'BasketController@checkout')->name('basket.checkout');
+Route::post('/basket/add/{id}', 'BasketController@add')
+    ->where('id', '[0-9]+')
+    ->name('basket.add');
