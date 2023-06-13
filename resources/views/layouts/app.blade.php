@@ -9,6 +9,7 @@
     @livewireStyles
 </head>
 <body>
+
     <div  class="bg-white">
         <header>
             <div class="container px-6 py-3 mx-auto">
@@ -24,13 +25,15 @@
                 <nav  class="p-6 mt-4 text-white bg-black sm:flex sm:justify-center sm:items-center">
                     <div class="flex flex-col sm:flex-row">
                         <a class="mt-3 hover:underline sm:mx-3 sm:mt-0" href="/">Shop</a>
-                        <a href="{{ route('cart.list') }}" class="flex items-center">
-                          profile  
-                        </a>
+                        <div class="flex flex-col sm:flex-row">
+                        <form action="{{ route('cart.index') }}" method="GET">
+                        <button class="mt-3 hover:underline sm:mx-3 sm:mt-0" >Cart</button>
+                        </form>
                         
                     </div>
                 </nav>
             </div>
+            
         </header>
         
         <main class="my-8">

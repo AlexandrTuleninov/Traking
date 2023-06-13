@@ -1,3 +1,5 @@
+
+
 @extends('layouts.app')
 
 @section('content')
@@ -13,13 +15,15 @@
                 <div class="px-5 py-3">
                     <h3 class="text-gray-700 uppercase">{{ $product->name }}</h3>
                     <span class="mt-2 text-gray-500">${{ $product->price }}</span>
-                    <form action="{{ route('cart.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('cart.add', ['id' => $product->id]) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <input type="hidden" value="{{ $product->id }}" name="id">
                         <input type="hidden" value="{{ $product->name }}" name="name">
                         <input type="hidden" value="{{ $product->price }}" name="price">
                         
-                        <input type="hidden" value="1" name="quantity">
+                        <label for="input-quantity">Количество</label>
+                        <input type="text" name="quantity" id="input-quantity" value="1"
+                        class="form-control mx-2 w-25">
                         <button class="px-4 py-2 text-white bg-blue-800 rounded">Add To Cart</button>
                     </form>
                 </div>

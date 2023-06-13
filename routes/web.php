@@ -16,15 +16,16 @@ use App\Http\Controllers\ProductController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-
+Route::get('/', function () {
+    return view('welcome');
+});
 Route::get('/reg', function () {
     return view('reg');
 });
 
 Route::post('/reg', 'AuthController@postReg');
 Route::get('/login', function () {
-    return view('login');
+    return view('auth.login');
 });
 
 Route::get('/user/{id}/profile', function ($id) {
@@ -47,13 +48,12 @@ Route::get('/confirm-password', function () {
 })->middleware('auth')->name('password.confirm');
 
 
-Auth::routes();
 
 
 
-Route::get('/', [ProductController::class, 'productList'])->name('products.list');
-Route::get('/cart', [CartController::class, 'index'])->name('cartIndex');
-Route::post('cart', [CartController::class, 'addToCart'])->name('cart.store');
-Route::post('update-cart', [CartController::class, 'updateCart'])->name('cart.update');
-Route::post('remove', [CartController::class, 'removeCart'])->name('cart.remove');
-Route::post('clear', [CartController::class, 'clearAllCart'])->name('cart.clear');
+
+Route::get('/cart/index', [CartController::class, 'index'])->name('cart.index');
+Route::get('/cart/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
+Route::post('/cart/add/{id}', [CartController::class, 'add'])
+    ->where('id', '[0-9]+')
+    ->name('cart.add');
