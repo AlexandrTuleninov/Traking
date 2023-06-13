@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
-use App\Http\Controllers;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProductController;
 
 /*
@@ -17,11 +17,6 @@ use App\Http\Controllers\ProductController;
 |
 */
 
-Route::match(['get','post'],'/productlist', [ProductController::class,'index']);
-
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Route::get('/reg', function () {
     return view('reg');
@@ -46,8 +41,6 @@ Route::middleware('guest')->namespace('\App\Http\Controllers')->group(function()
 });
 
 
-Route::get('/prod',[ProductController::class, 'index' ]
-);
 
 Route::get('/confirm-password', function () {
     return view('auth.confirm-password');
@@ -56,10 +49,11 @@ Route::get('/confirm-password', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/basket/index', [BasketController::class, 'index']);
-Route::get('/basket/checkout', 'BasketController@checkout')->name('basket.checkout');
-Route::post('/basket/add/{id}', 'BasketController@add')
-    ->where('id', '[0-9]+')
-    ->name('basket.add');
+
+Route::get('/', [ProductController::class, 'productList'])->name('products.list');
+Route::get('/cart', [CartController::class, 'index'])->name('cartIndex');
+Route::post('cart', [CartController::class, 'addToCart'])->name('cart.store');
+Route::post('update-cart', [CartController::class, 'updateCart'])->name('cart.update');
+Route::post('remove', [CartController::class, 'removeCart'])->name('cart.remove');
+Route::post('clear', [CartController::class, 'clearAllCart'])->name('cart.clear');
