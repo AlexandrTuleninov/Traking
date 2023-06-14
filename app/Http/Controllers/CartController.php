@@ -7,6 +7,7 @@ use App\Models\Cart;
 
 class CartController extends Controller
 {
+    private $cart;
     public function index(Request $request) {
         $cart_id = $request->cookie('cart_id');
         if (!empty($cart_id)) {
@@ -30,7 +31,7 @@ class CartController extends Controller
             $cart_id = $cart->id;
         } else {
             // корзина уже существует, получаем объект корзины
-            $cart = Cart::findOrFail($cart_id);
+            $cart = cart::findOrFail($cart_id);
             // обновляем поле `updated_at` таблицы `carts`
             $cart->touch();
         }
@@ -39,7 +40,6 @@ class CartController extends Controller
             $pivotRow = $cart->products()->where('product_id', $id)->first()->pivot;
             $quantity = $pivotRow->quantity + $quantity;
             $pivotRow->update(['quantity' => $quantity]);
-           
         } else {
             // если такого товара нет в корзине — добавляем его
             $cart->products()->attach($id, ['quantity' => $quantity]);

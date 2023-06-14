@@ -28,18 +28,22 @@ Route::get('/register', function () {
 });
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-
-Route::get('/catalog/index', [CatalogController::class,'index'])->name('catalog.index');
-Route::get('/catalog/category/{slug}', 'CatalogController@category')->name('catalog.category');
-Route::get('/catalog/provider/{slug}', 'CatalogController@provider')->name('catalog.provider');
-Route::get('/catalog/product/{slug}', 'CatalogController@product')->name('catalog.product');
-
-
 Route::post('/cart/add/{id}', [CartController::class, 'add'])
-    ->where('id', '[0-9]+')
     ->name('cart.add');
+    
+Route::post('/cart/plus/{id}', [CartController::class,'plus' ])
+    ->where('id', '[0-9]+')
+    ->name('cart.plus');
+Route::post('/cart/minus/{id}', [CartController::class,'minus' ])
+    ->where('id', '[0-9]+')
+    ->name('cart.minus');
+    
+Route::get('/catalog/index', [CatalogController::class,'index'])->name('catalog.index');
+Route::get('/catalog/category/{slug}', [CatalogController::class,'category'])->name('catalog.category');
+Route::get('/catalog/provider/{slug}', [CatalogController::class,'provider'])->name('catalog.provider');
+Route::get('/catalog/product/{name}', [CatalogController::class,'product'])->name('catalog.product');
+
 Route::get('/cart/index', [CartController::class, 'index'])->name('cart.index');
 Route::get('/cart/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
 
+Route::get('/1',[ProductController::class,'productList']);

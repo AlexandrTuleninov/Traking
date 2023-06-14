@@ -1,4 +1,4 @@
-@extends('layout.site')
+@extends('layouts.site')
 
 @section('content')
     <h1>Оформление заказа</h1>
