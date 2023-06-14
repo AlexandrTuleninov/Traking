@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Provider extends Model
 {
     use HasFactory;
-    public function products()
+    public  function products()
     {
         return $this->belongsToMany(Product::class);
     }

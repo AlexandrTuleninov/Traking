@@ -4,7 +4,11 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\IndexController;
+use App\Http\Controllers\HomeController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -16,44 +20,26 @@ use App\Http\Controllers\ProductController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', function () {
-    return view('welcome');
+
+Route::get('/', [IndexController::class, '__invoke'])->name('index');
+
+Route::get('/register', function () {
+    return view('auth.register');
 });
-Route::get('/reg', function () {
-    return view('reg');
-});
+Auth::routes();
 
-Route::post('/reg', 'AuthController@postReg');
-Route::get('/login', function () {
-    return view('auth.login');
-});
-
-Route::get('/user/{id}/profile', function ($id) {
-    //
-})->name('profile');
-
-Route::middleware('guest')->namespace('\App\Http\Controllers')->group(function() {
-	Route::get('/login', function () {
-		return view('login');
-	});
-	
-	Route::post('/login', 'AuthController@postSignin'
-	);
-});
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
-
-Route::get('/confirm-password', function () {
-    return view('auth.confirm-password');
-})->middleware('auth')->name('password.confirm');
-
-
+Route::get('/catalog/index', [CatalogController::class,'index'])->name('catalog.index');
+Route::get('/catalog/category/{slug}', 'CatalogController@category')->name('catalog.category');
+Route::get('/catalog/provider/{slug}', 'CatalogController@provider')->name('catalog.provider');
+Route::get('/catalog/product/{slug}', 'CatalogController@product')->name('catalog.product');
 
 
-
-
-Route::get('/cart/index', [CartController::class, 'index'])->name('cart.index');
-Route::get('/cart/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
 Route::post('/cart/add/{id}', [CartController::class, 'add'])
     ->where('id', '[0-9]+')
     ->name('cart.add');
+Route::get('/cart/index', [CartController::class, 'index'])->name('cart.index');
+Route::get('/cart/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
+

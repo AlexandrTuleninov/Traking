@@ -55,9 +55,12 @@ class CreateForeignkey extends Migration
         Schema::table('country_provider', function (Blueprint $table) {
             $table->foreign('provider_id','provider_country_provider_fk')->on('providers')->references('id');
             $table->foreign('country_id','provider_country_country_fk')->on('countries')->references('id');
-         
+        
         });
-        Schema::table('category_product', function (Blueprint $table) {
+        Schema::table('products', function (Blueprint $table) {
+            $table->foreign('category_id')->references('id')->on('categories');
+        });
+        /*Schema::table('category_product', function (Blueprint $table) {
             $table->foreign('category_id','category_product_category_fk')->on('categories')->references('id');
             $table->foreign('product_id','category_product_product_fk')->on('products')->references('id');
          
@@ -66,7 +69,7 @@ class CreateForeignkey extends Migration
             $table->foreign('album_id','album_products_album_fk')->on('products')->references('album_id');
             $table->foreign('photo_id','album_photo_photo_fk')->on('photos')->references('id');
          
-        });
+        });*/
 
     }
 
