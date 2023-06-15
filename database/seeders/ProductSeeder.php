@@ -27,7 +27,7 @@ class ProductSeeder extends Seeder
             'name'=>'product1',
             'price'=>'100',
             'measure'=>'m',
-            'album_id'=>'1',
+            
             'description'=>'text1',
             'commodity_volume'=>'1.1',
         ]);

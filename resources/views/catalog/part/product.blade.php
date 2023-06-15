@@ -7,8 +7,13 @@
             <img src="https://via.placeholder.com/400x120" alt="" class="img-fluid">
         </div>
         <div class="card-footer">
-            <a href="{{ route('catalog.product', ['slug' => $product->slug]) }}"
+            
+            <a href="{{ route('catalog.product', ['name' => $product->name]) }}"
                class="btn btn-dark">Перейти к товару</a>
+               <p>Цена: {{ number_format($product->price, 2, '.', '') }}</p>
+                
         </div>
+        <!-- Форма для добавления товара в корзину -->
+        
     </div>
 </div>

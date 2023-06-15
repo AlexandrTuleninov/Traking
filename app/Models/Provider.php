@@ -23,4 +23,7 @@ class Provider extends Model
     public function countries(){
         return $this->belongsToMany(Country::class);
     }
+    public function carts() {
+        return $this->hasMany(Cart::class);
+    }
 }

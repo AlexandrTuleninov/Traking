@@ -20,9 +20,7 @@
                class="form-control mx-2 w-25">
         <button type="submit" class="btn btn-success">Добавить в корзину</button>
     </form>
-
-                
-               
+    
             </div>
             @endforeach
         </div>

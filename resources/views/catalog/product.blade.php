@@ -1,4 +1,4 @@
-@extends('layouts.site')
+
 
 @section('content')
 <div class="row">
@@ -13,9 +13,27 @@
                         <img src="https://via.placeholder.com/400x400"
                              alt="" class="img-fluid">
                     </div>
-                    <div class="col-md-6">
-                        <p>Цена: {{ number_format($product->price, 2, '.', '') }}</p>
-                    </div>
+                        <div class="col-md-6">
+                            <p>Цена: {{ number_format($product->price, 2, '.', '') }}</p>
+                            <!-- Форма для добавления товара в корзину -->
+                            <form action="{{ route('add', ['id' => $product->id]) }}"
+                                method="post" class="form-inline">
+                                @csrf
+                                <label for="input-quantity">Количество</label>
+                                <input type="text" name="quantity" id="input-quantity" value="1"
+                                    class="form-control mx-2 w-25">
+
+                                <label for="input-provider">Поставщик</label>
+                                    <select name='provider_id' class="form-control">
+                                
+                                        @foreach ($product->providers as $provider)
+                                        <option value="{{$provider->id}}">{{$provider->name}}</option>
+                                        @endforeach
+                                    </select>
+                                   
+                                <button type="submit" class="btn btn-success">Добавить в корзину</button>
+                            </form>
+                        </div>  
                 </div>
                 <div class="row">
                     <div class="col-12">
@@ -35,10 +53,13 @@
                     </div>
                     <div class="col-md-6 text-right">
                         @isset($product->providers)
-                        Бренд:
-                        <a href="{{ route('catalog.provider', ['slug' => $product->providers->slug]) }}">
-                            {{ $product->providers->name }}
+                        Провайдер:
+                        @foreach ($product->providers as $provider)
+                        <a href="{{ route('catalog.provider', ['slug' => $provider->slug]) }}">
+                            {{ $provider->name }}
                         </a>
+                        @endforeach
+                        
                         @endisset
                     </div>
                 </div>

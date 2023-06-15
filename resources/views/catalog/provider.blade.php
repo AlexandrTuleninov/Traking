@@ -5,7 +5,7 @@
     <p>{{ $provider->content }}</p>
     <div class="row">
         @foreach ($provider->products as $product)
-            @include('part.product')
+            @include('catalog.product')
         @endforeach
     </div>
 @endsection

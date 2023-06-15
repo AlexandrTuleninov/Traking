@@ -14,31 +14,17 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     
         <a class="navbar-brand" href="/">Магазин</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse"
-                data-target="#navbar-example" aria-controls="navbar-example"
-                aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+        
         <!-- Основная часть меню (может содержать ссылки, формы и прочее) -->
-        <div class="collapse navbar-collapse" id="navbar-example">
+        <div class="" id="navbar-example">
             <!-- Этот блок расположен слева -->
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Каталог</a>
+                    <a class="nav-link" href="/catalog">Каталог</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Доставка</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Контакты</a>
-                </li>
+                
             </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search"
-                       placeholder="Поиск по каталогу" aria-label="Search">
-                <button class="btn btn-outline-info my-2 my-sm-0"
-                        type="submit">Искать</button>
-            </form>
+            
         </div>
         <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
@@ -78,10 +64,7 @@
 
     <div class="row">
         <div class="col-md-3">
-            <h4>Разделы каталога</h4>
-            <p>Здесь будут корневые разделы</p>
-            <h4>Популярные поставщики</h4>
-            <p>Здесь будут популярные поставщики</p>
+            
         </div>
         <div class="col-md-9">
             @yield('content')
