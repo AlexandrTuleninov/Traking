@@ -1,4 +1,4 @@
-
+@extends('layouts.site')
 
 @section('content')
 <div class="row">
@@ -16,21 +16,12 @@
                         <div class="col-md-6">
                             <p>Цена: {{ number_format($product->price, 2, '.', '') }}</p>
                             <!-- Форма для добавления товара в корзину -->
-                            <form action="{{ route('add', ['id' => $product->id]) }}"
+                            <form action="{{ route('cart.add', ['id' => $product->id]) }}"
                                 method="post" class="form-inline">
                                 @csrf
                                 <label for="input-quantity">Количество</label>
                                 <input type="text" name="quantity" id="input-quantity" value="1"
                                     class="form-control mx-2 w-25">
-
-                                <label for="input-provider">Поставщик</label>
-                                    <select name='provider_id' class="form-control">
-                                
-                                        @foreach ($product->providers as $provider)
-                                        <option value="{{$provider->id}}">{{$provider->name}}</option>
-                                        @endforeach
-                                    </select>
-                                   
                                 <button type="submit" class="btn btn-success">Добавить в корзину</button>
                             </form>
                         </div>  

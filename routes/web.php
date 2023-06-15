@@ -29,7 +29,7 @@ Route::get('/register', function () {
 Auth::routes();
 
 Route::post('/cart/add/{id}', [CartController::class, 'add'])
-    ->name('add');
+    ->name('cart.add');
     
 Route::post('/cart/plus/{id}', [CartController::class,'plus' ])
     ->where('id', '[0-9]+')
@@ -38,7 +38,6 @@ Route::post('/cart/minus/{id}', [CartController::class,'minus' ])
     ->where('id', '[0-9]+')
     ->name('cart.minus');
     
-Route::get('/catalog', [CatalogController::class,'index'])->name('catalog.index');
 Route::get('/catalog/index', [CatalogController::class,'index'])->name('catalog.index');
 Route::get('/catalog/category/{slug}', [CatalogController::class,'category'])->name('catalog.category');
 Route::get('/catalog/provider/{slug}', [CatalogController::class,'provider'])->name('catalog.provider');
