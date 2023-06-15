@@ -22,6 +22,16 @@
                                 <label for="input-quantity">Количество</label>
                                 <input type="text" name="quantity" id="input-quantity" value="1"
                                     class="form-control mx-2 w-25">
+
+                                <label for="input-provider">Поставщик</label>
+                                    <select name='provider_id' class="form-control mx-2 w-25">
+
+                                        @foreach ($product->providers as $provider)
+                                        <option value="{{$provider->id}}">{{$provider->name}}</option>
+                                        @endforeach
+                                    </select>
+                                <p></p>
+
                                 <button type="submit" class="btn btn-success">Добавить в корзину</button>
                             </form>
                         </div>  

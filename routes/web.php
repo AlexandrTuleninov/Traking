@@ -38,7 +38,7 @@ Route::post('/cart/minus/{id}', [CartController::class,'minus' ])
     ->where('id', '[0-9]+')
     ->name('cart.minus');
     
-Route::get('/catalog/index', [CatalogController::class,'index'])->name('catalog.index');
+Route::get('/catalog', [CatalogController::class,'index'])->name('catalog.index');
 Route::get('/catalog/category/{slug}', [CatalogController::class,'category'])->name('catalog.category');
 Route::get('/catalog/provider/{slug}', [CatalogController::class,'provider'])->name('catalog.provider');
 Route::get('/catalog/product/{name}', [CatalogController::class,'product'])->name('catalog.product');

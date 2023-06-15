@@ -20,7 +20,7 @@ class Product extends Model
 
     public function providers()
     {
-        return $this->belongsToMany(Provider::class);
+        return $this->belongsToMany(Provider::class)->withTimestamps();;
     }
 
     public function carts() {
