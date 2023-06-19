@@ -26,4 +26,8 @@ class Provider extends Model
     public function carts() {
         return $this->hasMany(Cart::class);
     }
+
+    public function add(Provider $provider){
+        
+    }
 }

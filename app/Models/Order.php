@@ -7,6 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
+    private $total, $present_total,
+    $description,$order_volume,
+    $user_id,$country,
+    $city_id, $delivery_address,
+    $traking_number,$delivery_date;
+    
     use HasFactory;
     public function user(){
         return $this->belongsTo(User::class);
@@ -15,4 +21,8 @@ class Order extends Model
     public function nomenclature(){
         return $this->hasMany(Nomenclature::class);
     }
+    public function add(Order $order){
+        //проверка 
+        Order::create();}
+
 }

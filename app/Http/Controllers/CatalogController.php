@@ -11,6 +11,7 @@ use App\Models\Provider;
 class CatalogController extends Controller
 {
     public function index() {
+        Category::add();
         $roots = Category::all();
         return view('catalog.index', compact('roots'));
     }
@@ -26,8 +27,9 @@ class CatalogController extends Controller
  
         return view('catalog.provider', compact('provider'));
     }
-    public function product($name) {
-        $product = Product::where('name', $name)->firstOrFail();
+    public function product($slug) {
+        
+        $product = Product::where('slug', $slug)->firstOrFail();
         return view('catalog.product', compact('product'));
     }
 }

@@ -18,6 +18,8 @@ class CreateNomenclaturesTable extends Migration
             $table->unsignedBigInteger('order_id');
             $table->unsignedBigInteger('provider_id');
             $table->unsignedBigInteger('product_id');
+            $table->unsignedBigInteger('country_id');
+            $table->unsignedBigInteger('city_id');
             $table->unsignedBigInteger('quantity');
             $table->double('price');
             $table->double('total')->nullable();

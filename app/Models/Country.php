@@ -19,4 +19,8 @@ class Country extends Model
     {
         return $this->belongsToMany(Providers::class);
     }
+    public function add(){
+        Country::create(['name'=>$this->name]);
+        return view('counrty', compact('this'));
+    }
 }

@@ -15,4 +15,11 @@ class City extends Model
     public function country(){
         return $this->hasOne(Country::class);
     }
+
+    public function add(){
+        City::create(['name'=>$this->name,
+        'counrty_id'=>$this->country_id,]);
+        return view('city', compact('this'));
+    }
+    
 }

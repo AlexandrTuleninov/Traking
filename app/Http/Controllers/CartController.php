@@ -22,8 +22,8 @@ class CartController extends Controller
         return view('cart.checkout');
     }
 
-        public function add(Request $request,$id) {
-            $cart_id = $request->cookie('cart_id');
+    public function add(Request $request,$id) {
+        $cart_id = $request->cookie('cart_id');
             $quantity = $request->input('quantity') ?? 1;
             $provider_id = $request->provider_id;
             if (empty($cart_id)||!Cart::where('id',$cart_id)->count()) {
@@ -45,6 +45,6 @@ class CartController extends Controller
             }
 
             return back()->withCookie(cookie('cart_id', $cart_id));
-        }
+        }    
     
 }
