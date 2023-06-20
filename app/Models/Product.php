@@ -22,7 +22,7 @@ class Product extends Model
 
     public function providers()
     {
-        return $this->belongsToMany(Provider::class)->withTimestamps();;
+        return $this->belongsToMany(Provider::class);
     }
 
     public function carts() {

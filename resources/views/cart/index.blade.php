@@ -10,20 +10,24 @@
             <tr>
                 <th>№</th>
                 <th>Наименование</th>
+                <th>Продавец</th>
                 <th>Цена</th>
                 <th>Кол-во</th>
                 <th>Стоимость</th>
             </tr>
             @foreach($products as $product)
                 @php
+                    $name=$product->name;
                     $itemPrice = $product->price;
                     $itemQuantity =  $product->pivot->quantity;
+                    $provider = $product->pivot->provider_id;
                     $itemCost = $itemPrice * $itemQuantity;
                     $basketCost = $basketCost + $itemCost;
                 @endphp
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    
+                    <td>{{$name}}</td>
+                    <td>{{$provider}}</td>
                     <td>{{ number_format($itemPrice, 2, '.', '') }}</td>
                     <td>
                         <i class="fas fa-minus-square"></i>

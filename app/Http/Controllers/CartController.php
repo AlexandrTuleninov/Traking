@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Cart;
+use App\Models\CartProducts;
+use Livewire\HydrationMiddleware\NormalizeComponentPropertiesForJavaScript;
 
 class CartController extends Controller
 {
@@ -12,7 +14,8 @@ class CartController extends Controller
     public function index(Request $request) {
         $cart_id = $request->cookie('cart_id');
         if (!empty($cart_id)) {
-            $products = Cart::findOrFail($cart_id)->products;
+            $cart_products= Cart::find($cart_id)->cart_products;
+            dd($cart_products);
             return view('cart.index', compact('products'));
         } else {
             abort(404);
@@ -33,15 +36,20 @@ class CartController extends Controller
                 $cart = Cart::findOrFail($cart_id);
                 $cart->touch();
             }
-            if ($cart->products->contains($id) && $cart->providers->contains($provider_id)) {
+            
+            $cartproducts= CartProducts::where(['cart_id'=>$cart_id, 'provider_id'=>$provider_id,'product_id'=>$id])->first();
+           
+            if (!empty($cartproducts)) {
+                $cartproducts->quantity=$quantity+$cartproducts->quantity;
                 
-                $pivotRow = $cart->products()->where('product_id', $id)->first()
-                ->pivot->where('provider_id',$provider_id)->first();
-                
-                $quantity = $pivotRow->quantity + $quantity;
-                $pivotRow->update(['quantity' => $quantity]);
+                $cartproducts->update();
             } else {
-                $cart->products()->attach( $id,['quantity' => $quantity,'provider_id'=>$provider_id]);
+                $cartproducts= new CartProducts;
+                $cartproducts->cart_id=$cart_id;
+                $cartproducts->product_id=$id;
+                $cartproducts->provider_id=$provider_id;
+                $cartproducts->quantity=$quantity;
+                $cartproducts->save();
             }
 
             return back()->withCookie(cookie('cart_id', $cart_id));

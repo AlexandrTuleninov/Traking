@@ -5,18 +5,22 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Http\Controllers\CartController;
+use App\Models\CartProducts;
 
 class Cart extends Model
 {
     use HasFactory;
 
     public function products() {
-        return $this->belongsToMany(Product::class)->withPivot('quantity');
+        return $this->hasMany(Product::class);
     }
     public function providers() {
-        return $this->belongsToMany(Provider::class,'cart_product')->withPivot('quantity');
+        return $this->hasMany(Provider::class,'cart_products');
     }
     
+    public function cartproducts(){
+        return $this->hasMany(CartProducts::class);
+    }
 
     public function add(object $request,$id) {
         $cart_id = $request->cookie('cart_id');
