@@ -4,16 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
-
 class CategoryController extends Controller
 {
     
     public function add(Request $request){
-        $request->arrayAccess;
+
         $category = new Category();
-        foreach($request as $Arrayable =>$ArrayAccess ){
-            $category->$Arrayable = $ArrayAccess;
-        }
+        $category->name = $request->input('name');
+        $category->content = $request->input('content');
+        $category->slug = $request->input('slug');
+        $category->image = $request->input('image');
         $category->add();
     }
 }

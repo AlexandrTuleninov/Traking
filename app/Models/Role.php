@@ -13,7 +13,8 @@ class Role extends Model
         return $this->belongsToMany(User::class);
     }
 
-    public function add(Role $role){
-        Role::create($role);
+    public function add(){
+        //проверка 
+        $this->save();  
     }
 }

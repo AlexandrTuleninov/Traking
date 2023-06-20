@@ -21,8 +21,8 @@ class Order extends Model
     public function nomenclature(){
         return $this->hasMany(Nomenclature::class);
     }
-    public function add(Order $order){
+    public function add(){
         //проверка 
-        Order::create();}
-
+        $this->save();  
+    }
 }

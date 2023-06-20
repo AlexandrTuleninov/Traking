@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CatalogController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\HomeController;
@@ -42,6 +43,8 @@ Route::get('/catalog', [CatalogController::class,'index'])->name('catalog.index'
 Route::get('/catalog/category/{slug}', [CatalogController::class,'category'])->name('catalog.category');
 Route::get('/catalog/provider/{slug}', [CatalogController::class,'provider'])->name('catalog.provider');
 Route::get('/catalog/product/{name}', [CatalogController::class,'product'])->name('catalog.product');
+
+Route::get('/category',[CategoryController::class,'add']);
 
 Route::get('/cart/index', [CartController::class, 'index'])->name('cart.index');
 Route::get('/cart/checkout', [CartController::class, 'checkout'])->name('cart.checkout');

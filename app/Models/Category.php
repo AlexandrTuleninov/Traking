@@ -19,7 +19,7 @@ class Category extends Model
         'name'=>$this->name,
         'content'=>$this->content,
         'slug'=>$this->slug,
-        'image'=>$this,
+        'image'=>$this->image,
     ]);
     return view('catalog.category', compact('this'));
     }

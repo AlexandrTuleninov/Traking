@@ -39,7 +39,5 @@ class Nomenclature extends Model
     'present_total'=>$this->present_total,
     'description'=>$this->description,
     'comment'=>$this->comment,]);
-    $table->unsignedBigInteger('country_id');
-            $table->unsignedBigInteger('city_id');
     }
 }
