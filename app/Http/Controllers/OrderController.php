@@ -8,6 +8,15 @@ use App\Models\Order;
 class OrderController extends Controller
 {
     public function add(Request $request){
+        dump($request->request);
+        foreach($request->request as $cartproduct_id){
+            if(intval($cartproduct_id,10))
+                dump($cartproduct_id);
+            
+            
+        }
+        
+        dd();
         $order = new Order();
         $order->user_id= $request->input('user_id');
         $order->country_id= $request->input('country_id');

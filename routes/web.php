@@ -9,7 +9,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\HomeController;
-
+use App\Http\Controllers\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,7 +42,7 @@ Route::post('/cart/minus/{id}', [CartController::class,'minus' ])
 Route::get('/catalog', [CatalogController::class,'index'])->name('catalog.index');
 Route::get('/catalog/category/{slug}', [CatalogController::class,'category'])->name('catalog.category');
 Route::get('/catalog/provider/{slug}', [CatalogController::class,'provider'])->name('catalog.provider');
-Route::get('/catalog/product/{name}', [CatalogController::class,'product'])->name('catalog.product');
+Route::get('/catalog/product/{slug}', [CatalogController::class,'product'])->name('catalog.product');
 
 Route::get('/category',[CategoryController::class,'add']);
 
@@ -50,3 +50,5 @@ Route::get('/cart/index', [CartController::class, 'index'])->name('cart.index');
 Route::get('/cart/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
 
 Route::get('/1',[ProductController::class,'productList']);
+
+Route::match(array('GET', 'POST'),'/order/add',[OrderController::class,'add'])->name('order.add');
