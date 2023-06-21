@@ -18,6 +18,7 @@ class CreateProductsTable extends Migration
             $table->string('name');
             $table->string('slug')->nullable();
             $table->double('price');
+            $table->string('currency');
             $table->string('measure')->nullable();
             $table->unsignedBigInteger('category_id')->nullable();
             $table->text('description')->nullable();

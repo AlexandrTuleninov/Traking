@@ -13,12 +13,7 @@ class CreateForeignkey extends Migration
      */
     public function up()
     {
-        Schema::table('role_user', function (Blueprint $table) {
-          
-            $table->foreign('user_id')->on('users')->references('id');
-            $table->foreign('role_id')->on('roles')->references('id');
         
-        });
         Schema::table('orders', function (Blueprint $table) {
             $table->foreign('user_id','user_order_user_fk')->on('users')->references('id');
          
@@ -28,6 +23,8 @@ class CreateForeignkey extends Migration
             $table->foreign('order_id','order_nomeclature_order_fk')->references('id')->on('orders');
             $table->foreign('provider_id','nomeclature_provider_provider_fk')->references('id')->on('providers');
             $table->foreign('product_id','nomeclature_product_product_fk')->references('id')->on('products');
+            $table->foreign('city_id','city_nomeclature_city_fk')->on('cities')->references('id');
+            $table->foreign('country_id','country_nomeclature_country_fk')->on('countries')->references('id');
          
         });
         Schema::table('product_provider', function (Blueprint $table) {
@@ -60,12 +57,18 @@ class CreateForeignkey extends Migration
         Schema::table('products', function (Blueprint $table) {
             $table->foreign('category_id')->references('id')->on('categories');
         });
-        /*Schema::table('category_product', function (Blueprint $table) {
+        Schema::table('category_product', function (Blueprint $table) {
             $table->foreign('category_id','category_product_category_fk')->on('categories')->references('id');
             $table->foreign('product_id','category_product_product_fk')->on('products')->references('id');
          
         });
-        Schema::table('album_photo', function (Blueprint $table) {
+        Schema::table('photos', function (Blueprint $table){
+            $table->foreign('product_id','photo_product_product_fk')->on('products')->references('id');
+        });
+        Schema::table('carts', function (Blueprint $table){
+            $table->foreign('user_id','cart_user_cart_fk')->on('users')->references('id');
+        });
+        /*Schema::table('album_photo', function (Blueprint $table) {
             $table->foreign('album_id','album_products_album_fk')->on('products')->references('album_id');
             $table->foreign('photo_id','album_photo_photo_fk')->on('photos')->references('id');
          

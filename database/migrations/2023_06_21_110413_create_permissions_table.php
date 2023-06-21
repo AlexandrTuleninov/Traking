@@ -3,8 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-
-class CreatePhotoTable extends Migration
+class CreatePermissionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +12,13 @@ class CreatePhotoTable extends Migration
      */
     public function up()
     {
-        Schema::create('photo', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('product_id');
-            $table->string('photo_path');
-            $table->string('description')->nullable();
+        Schema::create('permissions', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('name');
+            $table->string('slug');
             $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      *
@@ -29,6 +26,6 @@ class CreatePhotoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('photo');
+        Schema::dropIfExists('permissions');
     }
 }

@@ -10,6 +10,7 @@ class NomenclatureController extends Controller
     public function add(Request $request)
     {
        $nomenclature= new Nomenclature();
+       $nomenclature->order_id=$request->input('order_id');
        $nomenclature->provider_id=$request->input('provider_id');
        $nomenclature->product_id= $request->input('product_id');
        $nomenclature->country_id= $request->input('country_id');

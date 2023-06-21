@@ -18,17 +18,17 @@ class CreateNomenclaturesTable extends Migration
             $table->unsignedBigInteger('order_id');
             $table->unsignedBigInteger('provider_id');
             $table->unsignedBigInteger('product_id');
-            $table->unsignedBigInteger('country_id');
-            $table->unsignedBigInteger('city_id');
+            $table->unsignedBigInteger('country_id')->nullable();
+            $table->unsignedBigInteger('city_id')->nullable();
             $table->unsignedBigInteger('quantity');
             $table->double('price');
             $table->double('total')->nullable();
             $table->unsignedBigInteger('nomenclature_volume')->nullable();
             $table->string('currency'); //валюта
-            $table->double('present_price');
-            $table->double('present_total');
-            $table->string('description');
-            $table->string('comment');
+            $table->double('present_price')->nullable();
+            $table->double('present_total')->nullable();
+            $table->string('description')->nullable();
+            $table->string('comment')->nullable();
             $table->timestamps();
 
             $table->index('id');

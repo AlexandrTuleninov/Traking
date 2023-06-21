@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Cart;
-use App\Models\CartProducts;
+use App\Models\CartProduct;
 use Illuminate\Support\Facades\Auth;
 use Livewire\HydrationMiddleware\NormalizeComponentPropertiesForJavaScript;
 
@@ -71,14 +71,14 @@ class CartController extends Controller
             }
             
             
-            $cartproducts= CartProducts::where(['cart_id'=>$cart_id, 'provider_id'=>$provider_id,'product_id'=>$id])->first();
+            $cartproducts= CartProduct::where(['cart_id'=>$cart_id, 'provider_id'=>$provider_id,'product_id'=>$id])->first();
            
             if (!empty($cartproducts)) {
                 $cartproducts->quantity=$quantity+$cartproducts->quantity;
                 
                 $cartproducts->update();
             } else {
-                $cartproducts= new CartProducts;
+                $cartproducts= new CartProduct();
                 $cartproducts->cart_id=$cart_id;
                 $cartproducts->product_id=$id;
                 $cartproducts->provider_id=$provider_id;

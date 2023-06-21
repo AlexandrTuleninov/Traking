@@ -13,8 +13,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(CategoryTableSeeder::class);
+       /* $this->call(CategoryTableSeeder::class);
         $this->command->info('Таблица категорий загружена данными!');
-
+        */
+        $this->call(RoleSeeder::class);
+        $this->call(PermissionSeeder::class);
+        $this->call(UserSeeder::class);
     }
 }

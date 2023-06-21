@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\HasRolesAndPermissions;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -53,6 +54,10 @@ class User extends Authenticatable
 
     public function orders(){
         return $this->hasMany(Order::class);
+    }
+    public function permissions()
+    {
+        return $this->belongsToMany(Permission::class,'roles_permissions');
     }
 
 }

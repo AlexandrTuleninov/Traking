@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Nomenclature extends Model
 {
-    
+    protected $guarded = [];  
     use HasFactory;
     public function order()
     {
