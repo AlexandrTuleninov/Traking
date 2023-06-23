@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Provider;
 use Illuminate\Database\Seeder;
 
 class ProviderTableSeeder extends Seeder
@@ -13,6 +14,6 @@ class ProviderTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Provider::factory()->count(5)->create();
     }
 }

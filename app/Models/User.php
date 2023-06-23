@@ -15,8 +15,7 @@ class User extends Authenticatable
 {
     use HasApiTokens;
     use HasFactory;
-
-    use Notifiable;
+    use Notifiable, HasRolesAndPermissions;
     
 
     /**
@@ -57,7 +56,7 @@ class User extends Authenticatable
     }
     public function permissions()
     {
-        return $this->belongsToMany(Permission::class,'roles_permissions');
+        return $this->belongsToMany(Permission::class,'users_permissions');
     }
 
 }

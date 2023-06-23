@@ -4,16 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Http\Controllers\CartController;
-use League\CommonMark\Normalizer\SlugNormalizer;
 use Illuminate\Support\Str;
+use Illiminate\Support\Integer;
 
 class Product extends Model
 {
-    private  $name,$slug,$price,
-    $measure,$commodity_volume,
-    $category_id,$description;
+ 
     use HasFactory;
+    protected $guarded = [];  
  
     public function nomenclature()
     {
@@ -22,13 +20,20 @@ class Product extends Model
 
     public function providers()
     {
-        return $this->belongsToMany(Provider::class);
+        return $this->belongsToMany(Provider::class)->withPivot('price','currency');;
     }
 
     public function carts() {
         return $this->belongsToMany(Cart::class)->withPivot('quantity');
     }
     
+    public function categories(){
+        return $this->belongsToMany(Category::class);
+    }
+
+    public function price(Integer $provider_id){
+
+    }
     public function validation(Product $product){
         $validated = $product->validate([
             'name' => 'required|unique:products|max:255',

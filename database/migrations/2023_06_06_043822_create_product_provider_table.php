@@ -17,6 +17,8 @@ class CreateProductProviderTable extends Migration
             $table->id();
             $table->unsignedBigInteger('product_id');
             $table->unsignedBigInteger('provider_id');
+            $table->double('price')->nullable();
+            $table->string('currency')->nullable();
             $table->timestamps();
         });
     }

@@ -23,8 +23,11 @@ class UserSeeder extends Seeder
         $user1->email = 'tuleninov.98@gmail.com';
         $user1->password = bcrypt('secret');
         $user1->save();
+        
         $user1->roles()->attach($developer);
+
         $user1->permissions()->attach($createTasks);
+       
         $user2 = new User();
         $user2->name = 'rain';
         $user2->email = 'ranblion@gmail.com';

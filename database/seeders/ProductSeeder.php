@@ -3,7 +3,12 @@
 namespace Database\Seeders;
 
 use App\Models\Product;
+use App\Models\Provider;
+use App\Models\ProductProvider;
+use App\Models\Category;
 use Illuminate\Database\Seeder;
+use Faker\Generator as Faker;
+
 
 class ProductSeeder extends Seeder
 {
@@ -12,24 +17,19 @@ class ProductSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(Faker $faker)
     {
-        /*    $table->id();
-            $table->string('name');
-            $table->double('price');
-            $table->string('measure');
-            $table->unsignedBigInteger('album_id');
-            $table->index('album_id');
-            $table->text('description');
-            $table->double('commodity_volume');
-            $table->timestamps();*/
-        Product::create([
-            'name'=>'product1',
-            'price'=>'100',
-            'measure'=>'m',
-            
-            'description'=>'text1',
-            'commodity_volume'=>'1.1',
-        ]);
+        $product=new Product();
+        $product=Product::factory()->create();
+     
+        $provider= Provider::find(1);
+        $category= Category::find(1);
+        $product->providers()->attach($provider);
+        $product->categories()->attach($category);
+        $pivot_id=ProductProvider::where(['product_id'=>$product->id, 'provider_id'=>$provider->id])->first()->id;
+        $pivot=ProductProvider::find($pivot_id)->first();
+        $pivot->price= $faker->numberBetween(199,499);
+        $pivot->currency='rub';
+        $pivot->update();
     }
 }
