@@ -39,16 +39,19 @@ Route::post('/cart/minus/{id}', [CartController::class,'minus' ])
     ->where('id', '[0-9]+')
     ->name('cart.minus');
     
-Route::get('/catalog', [CatalogController::class,'index'])->name('catalog.index');
+Route::get('/catalog', [CatalogController::class,'index'])->name('catalog');
 Route::get('/catalog/category/{slug}', [CatalogController::class,'category'])->name('catalog.category');
 Route::get('/catalog/provider/{slug}', [CatalogController::class,'provider'])->name('catalog.provider');
 Route::get('/catalog/product/{slug}', [CatalogController::class,'product'])->name('catalog.product');
 
 Route::get('/category',[CategoryController::class,'add']);
 
-Route::get('/cart/index', [CartController::class, 'index'])->name('cart.index');
+Route::get('/cart/index', [CartController::class, 'index'])->name('cart');
 Route::get('/cart/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
 
 Route::get('/1',[ProductController::class,'productList']);
 
 Route::match(array('GET', 'POST'),'/order/add',[OrderController::class,'add'])->name('order.add');
+
+Route::match(array('GET', 'POST'),'/product/add/index',[ProductController::class, 'addIndex'])->name('product.add.index');
+Route::post('/product/add',[ProductController::class,'add'])->name('product.add');

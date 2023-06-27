@@ -11,7 +11,7 @@ use App\Models\Provider;
 class CatalogController extends Controller
 {
     public function index() {
-        
+
         $roots = Category::all();
         return view('catalog.index', compact('roots'));
     }
@@ -31,5 +31,11 @@ class CatalogController extends Controller
         
         $product = Product::where('slug', $slug)->firstOrFail();
         return view('catalog.product', compact('product'));
+    }
+
+    public function partproduct($slug) {
+        
+        $product = Product::where('slug', $slug)->firstOrFail();
+        return view('catalog.part.product', compact('product'));
     }
 }

@@ -31,9 +31,7 @@ class Product extends Model
         return $this->belongsToMany(Category::class);
     }
 
-    public function price(Integer $provider_id){
 
-    }
     public function validation(Product $product){
         $validated = $product->validate([
             'name' => 'required|unique:products|max:255',
@@ -44,21 +42,14 @@ class Product extends Model
             'commodity_volume'=>'required',
         ]);
     }
-    public function add(Product $product){
-        $product->slug = Str::slug($product->name);
-        if (Product::where('slug',$product->slug)->exists()){
+    public function add(){
+        $this->slug = Str::slug($this->name);
+        if (Product::where('slug',$this->slug)->exists()){
             return back();
         }
         else{
-            Product::create(['name' => $product->name,
-            'slug'=>$product->slug,
-            'price'=>$product->price,
-            'measure'=>$product->measure,
-            'commodity_volume'=>$product->commodity_volume,
-            'category_id'=>$product->category_id,
-            'description'=>$product->description]);
-
-            return view('catalog.product', compact('product'));
+           $this->save();
+            return $this->id;
         }
 
     }
