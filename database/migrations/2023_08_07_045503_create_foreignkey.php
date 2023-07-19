@@ -73,6 +73,11 @@ class CreateForeignkey extends Migration
             $table->foreign('photo_id','album_photo_photo_fk')->on('photos')->references('id');
          
         });*/
+        Schema::table('provider_user', function (Blueprint $table) {
+            $table->foreign('provider_id','provider_user_provider_fk')->on('providers')->references('id');
+            $table->foreign('user_id','provider_user_user_fk')->on('users')->references('id');
+         
+        });
 
     }
 

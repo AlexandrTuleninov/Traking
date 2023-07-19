@@ -9,6 +9,11 @@ class Provider extends Model
 {
     protected $guarded = []; 
     use HasFactory;
+
+    public function users()
+    {
+        return $this->hasMany(User::class);
+    }
     public  function products()
     {
         return $this->belongsToMany(Product::class);

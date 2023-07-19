@@ -59,4 +59,7 @@ class User extends Authenticatable
         return $this->belongsToMany(Permission::class,'users_permissions');
     }
 
+    public function provider(){
+        return $this->belongsTo(Provider::class);
+    }
 }

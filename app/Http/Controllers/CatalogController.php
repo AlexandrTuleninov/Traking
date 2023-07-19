@@ -38,4 +38,8 @@ class CatalogController extends Controller
         $product = Product::where('slug', $slug)->firstOrFail();
         return view('catalog.part.product', compact('product'));
     }
+
+    public function add(Request $request){
+        
+    }
 }
