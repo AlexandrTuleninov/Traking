@@ -34,9 +34,6 @@ class ProductController extends Controller
         //Сохраняем оригинальную картинку
         $data['image']->Image::insert('/public/1.svg');
         return back();
-    
-        
-
     }
 
 }
