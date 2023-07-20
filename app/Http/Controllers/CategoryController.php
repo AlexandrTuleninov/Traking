@@ -3,17 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use App\Models\Category;
 class CategoryController extends Controller
 {
     
     public function add(Request $request){
-
-        $category = new Category();
-        $category->name = $request->input('name');
-        $category->content = $request->input('content');
-        $category->slug = $request->input('slug');
-        $category->image = $request->input('image');
-        $category->add();
+        $data = $request->all();
+        $category= Category::create();
+        $category->name=$data['name'];
+        $category->slug= Str::slug($data['name']);
+        $category->content= $data['content'];
     }
 }

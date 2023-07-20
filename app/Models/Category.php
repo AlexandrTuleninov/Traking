@@ -14,7 +14,7 @@ class Category extends Model
         return $this->belongsToMany(Product::class);
     }
     
-    public function add(){
+    /*public function add(){
         Category::create(['parent_id'=>$this->parent_id,
         'name'=>$this->name,
         'content'=>$this->content,
@@ -22,5 +22,5 @@ class Category extends Model
         'image'=>$this->image,
     ]);
     return view('catalog.category', compact('this'));
-    }
+    }*/
 }

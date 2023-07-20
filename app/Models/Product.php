@@ -31,6 +31,9 @@ class Product extends Model
         return $this->belongsToMany(Category::class);
     }
 
+    public function photos(){
+        return $this->hasMany(Photo::class);
+    }
 
     public function validation(Product $product){
         $validated = $product->validate([
