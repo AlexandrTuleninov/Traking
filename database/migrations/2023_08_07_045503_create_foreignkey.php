@@ -62,9 +62,6 @@ class CreateForeignkey extends Migration
             $table->foreign('product_id','category_product_product_fk')->on('products')->references('id');
          
         });
-        Schema::table('photos', function (Blueprint $table){
-            $table->foreign('product_id','photo_product_product_fk')->on('products')->references('id');
-        });
         Schema::table('carts', function (Blueprint $table){
             $table->foreign('user_id','cart_user_cart_fk')->on('users')->references('id');
         });

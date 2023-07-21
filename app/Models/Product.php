@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 use Illiminate\Support\Integer;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 
 class Product extends Model
 {
@@ -45,6 +47,7 @@ class Product extends Model
             'commodity_volume'=>'required',
         ]);
     }
+
     public function add(){
         $this->slug = Str::slug($this->name);
         if (Product::where('slug',$this->slug)->exists()){
@@ -56,4 +59,18 @@ class Product extends Model
         }
 
     }
+
+
+
+    /** 
+    * @return Product
+    **/
+    /*private function parsingData($data){
+        $this->name=$data['name'];
+        $this->slug= Str::slug($data['name']);
+        $this->description= $data['content'];
+        $this->addPhoto($data);
+        $this->url_image=$this->setLinkPhoto($data);
+        return $this;
+    } */
 }

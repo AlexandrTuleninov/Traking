@@ -38,7 +38,6 @@ class ProductController extends Controller
         $filename=(string)$product->slug.(string)'.' . (string)$data['image']->extension();
         $data['image']->move(Storage::path('/public/image/products/').'origin/',$filename);
 
-        $provider->product()->save($product);
         $thumbnail = Image::make(Storage::path('public/image/products/').'origin/'.$filename);
         $thumbnail->fit(400,400);
         $thumbnail->save(Storage::path('public/image/products/').'400x400/'.$filename);

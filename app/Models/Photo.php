@@ -11,18 +11,15 @@ use Intervention\Image\Facades\Image;
 class Photo extends Model
 {
     use HasFactory;
-    public Image $image;
-    public  $path;
 
-    /**
-     * saves $image along the Photo->$path
-    * @return void ;
-     */
-    public function add(){
-        $this->image->Image::save($this->path);
+    public function addPhoto($data , ){
+        $filename=(string)$this->slug.(string)'.' . (string)$data['image']->extension();
+        $data['image']->move(Storage::path('/public/image/categories/').'origin/',$filename);  
     }
-    public function product(){
-        return $this->belongsTo(Product::class);
+
+    public function getUrlPhoto($data){
+        $filename=(string)$this->slug.(string)'.' . (string)$data['image']->extension();
+        $path = '/public/image/categories/' . 'origin/' . $filename;
+        return Storage::url($path);
     }
-   
 }
